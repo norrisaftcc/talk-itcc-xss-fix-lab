@@ -31,7 +31,7 @@
       var nameInput = document.getElementById("sender-name");
       var output = document.getElementById("output");
       // BUG (on purpose): innerHTML reads the name as HTML, not as text.
-      output.innerHTML = nameInput.value;
+      output.textContent = nameInput.value;
     }
     document.getElementById("show").addEventListener("click", showName);
   </script>
