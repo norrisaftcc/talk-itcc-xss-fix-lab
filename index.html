@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Phish Report Viewer (lab)</title>
+  <style>
+    body { font-family: system-ui, sans-serif; max-width: 40rem; margin: 2rem auto; padding: 0 1rem; color: #1a1a1a; background: #ffffff; }
+    .banner { background: #fff3cd; border: 2px solid #b8860b; padding: 0.75rem 1rem; font-weight: 600; }
+    label { display: block; margin-top: 1.5rem; font-weight: 600; }
+    input { font-size: 1rem; padding: 0.4rem; width: 100%; max-width: 24rem; box-sizing: border-box; }
+    button { font-size: 1rem; padding: 0.4rem 1rem; margin-top: 0.5rem; }
+    .output { margin-top: 1.5rem; padding: 1rem; border: 1px solid #888; min-height: 1.5rem; background: #f6f6f6; }
+  </style>
+</head>
+<body>
+  <p class="banner">Teaching lab. This page has a bug on purpose.</p>
+  <h1>Phish Report Viewer (lab)</h1>
+  <p>Type the sender name from a reported email. Then select Show.</p>
+
+  <label for="sender-name">Sender display name</label>
+  <input id="sender-name" type="text" autocomplete="off">
+  <button id="show" type="button">Show</button>
+
+  <h2>Sender</h2>
+  <div id="output" class="output"></div>
+
+  <script>
+    // When you select Show, copy the sender name into the output box.
+    function showName() {
+      var nameInput = document.getElementById("sender-name");
+      var output = document.getElementById("output");
+      // BUG (on purpose): innerHTML reads the name as HTML, not as text.
+      output.innerHTML = nameInput.value;
+    }
+    document.getElementById("show").addEventListener("click", showName);
+  </script>
+</body>
+</html>
