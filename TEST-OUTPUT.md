@@ -1,6 +1,6 @@
 # Test output
 
-This file records a test of `index.html` in a headless browser. It describes the page on `main` (with the bug) and on the fix branches.
+This file records a test of `index.html` in a headless browser. It describes the page on `main` (with the bug) and on the branch `fix-sender-text` (with the fix).
 
 ## How we tested
 
@@ -8,7 +8,7 @@ This file records a test of `index.html` in a headless browser. It describes the
 - For each branch, the test opened that branch's `index.html` from a local file.
 - It typed `<b>Security Team</b>` in **Sender display name**. Then it selected **Show**.
 - On `main`, the test expects one `<b>` element in the output box (bold text).
-- On `fix-sender-text` and `fix-sender-text-2`, the test expects no `<b>` element. The text must show the tags as typed.
+- On `fix-sender-text`, the test expects no `<b>` element. The text must show the tags as typed.
 - The test also checks for script errors and for requests to other sites. It found none.
 
 The blob value is the Git ID of `index.html` on that branch. You can check it with `git rev-parse --short <branch>:index.html`.
@@ -33,15 +33,7 @@ Browser: Chromium 153.0.8010.12 (headless, Playwright)
   page errors / external requests: none
   expected: literal tags as text (no <b> element)
   result: PASS
-[fix-sender-text-2, index.html blob a61af59] input: <b>Security Team</b>
-  <b> elements in output: 0
-  output textContent:     "<b>Security Team</b>"
-  output innerHTML:       "&lt;b&gt;Security Team&lt;/b&gt;"
-  <b> font-weight:        null
-  page errors / external requests: none
-  expected: literal tags as text (no <b> element)
-  result: PASS
-Summary: 3/3 passed
+Summary: 2/2 passed
 ```
 
 ## Screenshots (descriptions only)
