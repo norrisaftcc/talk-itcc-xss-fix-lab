@@ -8,6 +8,8 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
+  # Lets you start a run by hand: Actions > CodeQL > Run workflow.
+  workflow_dispatch:
 
 jobs:
   analyze:
