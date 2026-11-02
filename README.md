@@ -39,7 +39,7 @@ Each step that runs CodeQL can take a few minutes. Wait for it.
 
 1. On this repository, select **Use this template**, then **Create a new repository**.
 2. Choose **Public**. (See "Why public" below.)
-3. Open the **Actions** tab. Wait for the **CodeQL** run to finish. The first alert can take a few minutes after the first push.
+3. Open the **Actions** tab. Wait for the **CodeQL** run to finish. The first alert can take a few minutes after the first push. If no run starts, open Actions, select CodeQL, select Run workflow.
 4. Open **Security**, then **Code scanning**. If you see no alert, read "How to read the alert" below. You can still do the fix.
 5. Open the alert. Read it (see "How to read the alert" below).
 6. Open `index.html`. Select the pencil icon to edit the file in the browser.
@@ -47,7 +47,9 @@ Each step that runs CodeQL can take a few minutes. Wait for it.
 8. Select **Commit changes**. Commit to `main`.
 9. Wait for the new CodeQL run. Go back to **Security**, then **Code scanning**. The alert should show as closed (fixed).
 
-To see the fix before you edit, compare `main` with the branch `fix-sender-text`. The branch `fix-sender-text-2` has the same one-line change.
+After the fix, the comment `// BUG (on purpose)` and the banner still say "bug on purpose". A reviewer would ask you to update them.
+
+You can see the fix before you edit. In the template repository, not in your copy, open the branch `fix-sender-text`.
 
 ## How to read the alert
 
@@ -59,7 +61,7 @@ Sources:
 
 - Query help: https://codeql.github.com/codeql-query-help/javascript/js-xss-through-dom/
 - Source list (includes `value`): https://github.com/github/codeql/blob/main/javascript/ql/lib/semmle/javascript/security/dataflow/XssThroughDomCustomizations.qll
-- Query test cases (element `value` and `innerHTML`): https://github.com/github/codeql/blob/main/javascript/ql/test/query-tests/Security/CWE-079/XssThroughDom/xss-through-dom.js
+- Query test cases (`.value` to `.html()`; `.val()` to `innerHTML`): https://github.com/github/codeql/blob/main/javascript/ql/test/query-tests/Security/CWE-079/XssThroughDom/xss-through-dom.js
 
 An alert page has these parts:
 
@@ -70,7 +72,7 @@ An alert page has these parts:
 
 ## Why public
 
-Code scanning on a free GitHub account needs a public repository. If you choose **Private** on a free account, the CodeQL alert does not show.
+Code scanning is free only on public repos. If you choose **Private** on a free account, the CodeQL alert does not show.
 
 ## Do not put real data here
 
