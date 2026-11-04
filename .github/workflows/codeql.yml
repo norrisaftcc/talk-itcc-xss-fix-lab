@@ -1,0 +1,40 @@
+# CodeQL code scanning for this lab.
+# Based on GitHub's "CodeQL Advanced" starter workflow (actions/starter-workflows,
+# code-scanning/codeql.yml). It scans the JavaScript in index.html.
+name: "CodeQL"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  # Lets you start a run by hand: Actions > CodeQL > Run workflow.
+  workflow_dispatch:
+
+jobs:
+  analyze:
+    name: Analyze (javascript-typescript)
+    runs-on: ubuntu-latest
+    permissions:
+      # Required: lets CodeQL upload results to the Security tab.
+      security-events: write
+      # Required only for private CodeQL packs.
+      packages: read
+      # Required only in private repositories.
+      actions: read
+      contents: read
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v7
+
+    - name: Initialize CodeQL
+      uses: github/codeql-action/init@v4
+      with:
+        languages: javascript-typescript
+        build-mode: none
+
+    - name: Perform CodeQL Analysis
+      uses: github/codeql-action/analyze@v4
+      with:
+        category: "/language:javascript-typescript"
